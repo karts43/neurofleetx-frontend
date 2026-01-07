@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# NeuroFleetX – AI Urban Mobility Platform 🚦🚗
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+NeuroFleetX is an **AI-powered urban fleet and traffic intelligence system** designed to optimize smart city mobility.  
+It provides **role-based dashboards**, **fleet monitoring**, and a scalable foundation for real-time traffic and vehicle analytics.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔥 Key Features
 
-### `npm start`
+- 🔐 **Authentication & Role-Based Access**
+  - Admin
+  - Fleet Manager
+  - Driver
+  - Customer
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 📊 **Role-Based Dashboards (UI)**
+  - Admin: Total Users, Total Fleet, Active Vehicles
+  - Fleet Manager: Fleet Status, Vehicles in Use
+  - Driver: Assigned Vehicle, Trip Status
+  - Customer: My Bookings, Available Vehicles
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🧭 **Smart Navigation Ready**
+  - Architecture supports real-time tracking & route optimization
 
-### `npm test`
+- 🧩 **Scalable Architecture**
+  - Frontend: React
+  - Backend (planned): Spring Boot + JWT
+  - Database (planned): MySQL
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
+- React (Create React App)
+- React Router
+- JavaScript (ES6+)
+- CSS (Custom UI)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend (Planned)
+- Spring Boot
+- Spring Security + JWT
+- REST APIs
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📁 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```text
+neurofleetx-frontend/
+│
+├── src/
+│   ├── components/
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │
+│   ├── dashboards/
+│   │   ├── AdminDashboard.jsx
+│   │   ├── ManagerDashboard.jsx
+│   │   ├── DriverDashboard.jsx
+│   │   ├── CustomerDashboard.jsx
+│   │
+│   ├── services/
+│   │   └── authService.js
+│   │
+│   ├── App.js
+│   ├── index.js
+│
+├── public/
+├── package.json
+└── README.md
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+🚀 Getting Started
+1️⃣ Clone the Repository
+git clone https://github.com/karts43/neurofleetx-frontend.git
+cd neurofleetx-frontend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2️⃣ Install Dependencies
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3️⃣ Run the Application
+npm start
 
-## Learn More
+📍 Open: http://localhost:3000
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3000
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🧪 Available Scripts
+Command	Description
+npm start	Run app in development mode
+npm test	Run tests
+npm run build	Build for production
+npm run eject	Eject CRA config (not recommended)
+🎯 Current Status
 
-### Code Splitting
+✅ Frontend UI complete
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+✅ Role-based routing implemented
 
-### Analyzing the Bundle Size
+⏳ Backend & JWT authentication in progress
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+🌍 Future Enhancements
 
-### Making a Progressive Web App
+Real-time vehicle tracking (WebSocket)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+AI-based route optimization
 
-### Advanced Configuration
+Live traffic & congestion analytics
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Booking & scheduling engine
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Admin analytics dashboard
