@@ -1,23 +1,33 @@
-// src/services/authService.js
+// LOGIN
+export const login = async (email, password) => {
+  try {
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-export const login = (email, role) => {
-  // dummy authentication
-  localStorage.setItem("token", "dummy-token");
-  localStorage.setItem("role", role);
+    const data = await response.json();
 
-  if (role === "ADMIN") {
-    window.location.href = "/admin";
-  } else if (role === "MANAGER") {
-    window.location.href = "/manager";
-  } else if (role === "DRIVER") {
-    window.location.href = "/driver";
-  } else if (role === "CUSTOMER") {
-    window.location.href = "/customer";
+    if (!response.ok) {
+      throw new Error(data.message || "Invalid email or password");
+    }
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+
+    return data;
+  } catch (error) {
+    console.error("Login API error:", error);
+    throw error;
   }
 };
 
+// LOGOUT  ✅ (THIS FIXES YOUR ERROR)
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("role");
-  window.location.href = "/";
+  window.location.href = "/login";
 };

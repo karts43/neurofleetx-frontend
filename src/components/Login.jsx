@@ -1,30 +1,45 @@
 import React, { useState } from "react";
 import { login } from "../services/authService";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("ADMIN");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // ✅ INSIDE component
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    // basic validation
     if (!email || !password) {
-      alert("Please enter email and password");
+      setError("Please enter email and password");
       return;
     }
 
-    // dummy login call
-    login(email, role);
+    try {
+      const data = await login(email, password); // ✅ DEFINE data
+
+      // ✅ ROLE-BASED REDIRECT
+      if (data.role === "ADMIN") navigate("/admin");
+      else if (data.role === "MANAGER") navigate("/manager");
+      else if (data.role === "DRIVER") navigate("/driver");
+      else navigate("/customer");
+
+    } catch (err) {
+      setError(err.message || "Login failed");
+    }
   };
 
   return (
     <div style={styles.container}>
       <form style={styles.card} onSubmit={handleSubmit}>
         <h2 style={styles.title}>NeuroFleetX Login</h2>
+
+        {error && (
+          <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+        )}
 
         <input
           type="email"
@@ -42,33 +57,23 @@ function Login() {
           style={styles.input}
         />
 
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          style={styles.input}
-        >
-          <option value="ADMIN">Admin</option>
-          <option value="MANAGER">Fleet Manager</option>
-          <option value="DRIVER">Driver</option>
-          <option value="CUSTOMER">Customer</option>
-        </select>
-
         <button type="submit" style={styles.button}>
           Login
         </button>
+
         <p style={{ textAlign: "center", marginTop: "15px" }}>
           Don’t have an account?{" "}
-          <Link to="/register" style={{ color: "#667eea", fontWeight: "bold" }}>
+          <Link to="/register" style={{ color: "#667eea" }}>
             Register
           </Link>
         </p>
-
       </form>
     </div>
   );
 }
 
 export default Login;
+
 
 const styles = {
   container: {
@@ -90,7 +95,7 @@ const styles = {
     marginBottom: "20px",
   },
   input: {
-    width: "90%",
+    width: "100%",
     padding: "10px",
     marginBottom: "15px",
     borderRadius: "5px",
