@@ -95,7 +95,7 @@ const styles = {
     marginBottom: "20px",
   },
   input: {
-    width: "100%",
+    width: "93%",
     padding: "10px",
     marginBottom: "15px",
     borderRadius: "5px",

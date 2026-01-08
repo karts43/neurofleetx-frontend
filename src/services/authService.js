@@ -1,28 +1,25 @@
 // LOGIN
 export const login = async (email, password) => {
-  try {
-    const response = await fetch("http://localhost:8080/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
 
-    const data = await response.json();
+  // 🔐 Dummy users (frontend-only)
+  const users = {
+    "admin@gmail.com": { password: "admin123", role: "ADMIN" },
+    "manager@gmail.com": { password: "manager123", role: "MANAGER" },
+    "driver@gmail.com": { password: "driver123", role: "DRIVER" },
+    "customer@gmail.com": { password: "customer123", role: "CUSTOMER" },
+  };
 
-    if (!response.ok) {
-      throw new Error(data.message || "Invalid email or password");
-    }
+  const user = users[email];
 
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("role", data.role);
-
-    return data;
-  } catch (error) {
-    console.error("Login API error:", error);
-    throw error;
+  if (!user || user.password !== password) {
+    throw new Error("Invalid email or password");
   }
+
+  // Fake token
+  localStorage.setItem("token", "frontend-only-token");
+  localStorage.setItem("role", user.role);
+
+  return { token: "frontend-only-token", role: user.role };
 };
 
 // LOGOUT  ✅ (THIS FIXES YOUR ERROR)
